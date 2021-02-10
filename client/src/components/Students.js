@@ -19,7 +19,12 @@ function Students() {
 
   return(
     <div>
-      <h1>Students component works</h1>
+      { students && students.map(student => (
+        <div className="student" key={ student.id }>
+          <h3>The students full name is { student.firstName } { student.lastName }</h3>
+          <h6>They are currently in grade { student.grade }</h6>
+        </div>
+      ))}
     </div>
   )
 }
