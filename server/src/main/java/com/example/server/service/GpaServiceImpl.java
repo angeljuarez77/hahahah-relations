@@ -17,17 +17,17 @@ public class GpaServiceImpl implements GpaService {
     }
 
     @Override
-    public Gpa createGpa() {
+    public Gpa createGpa(Gpa gpa) {
         return null;
     }
 
     @Override
-    public Gpa updateGpa() {
+    public Gpa updateGpa(Gpa gpa) {
         return null;
     }
 
     @Override
-    public HttpStatus deleteGpa() {
+    public HttpStatus deleteGpa(Long id) {
         return null;
     }
 }
