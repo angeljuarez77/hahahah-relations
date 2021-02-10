@@ -3,6 +3,7 @@ package com.example.server.controller;
 import com.example.server.model.Gpa;
 import com.example.server.service.GpaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,12 +18,13 @@ public class GpaController {
     }
 
     @PostMapping
-    public Gpa createGpa(Gpa gpa) {
+    public Gpa createGpa(@RequestBody Gpa gpa) {
         return gpaService.createGpa(gpa);
     }
 
     @PatchMapping
-    public Gpa updateGpa(Gpa gpa) {
+    public Gpa updateGpa(@RequestBody Gpa gpa) {
         return gpaService.updateGpa(gpa);
     }
+
 }
