@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function Students() {
+  const [students, setStudents] = useState(null);
+
+  async function getStudents() {
+    try {
+      const res = await axios.get('http://localhost:8080/students');
+      setStudents(res.data);
+    } catch(e) {
+      console.error(e, e.message);
+    }
+  }
+
   useEffect(() => {
-    console.log('hello');
+    getStudents();
   }, [])
 
   return(
