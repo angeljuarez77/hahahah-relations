@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GpaServiceImpl implements GpaService {
+
     @Autowired
     GpaRepository gpaRepository;
 
@@ -31,4 +32,5 @@ public class GpaServiceImpl implements GpaService {
         gpaRepository.deleteById(id);
         return HttpStatus.OK;
     }
+
 }
