@@ -28,7 +28,7 @@ public class GpaController {
     }
 
     @DeleteMapping("/{id}")
-    public HttpStatus deleteGpa(@RequestParam Long id) {
+    public HttpStatus deleteGpa(@PathVariable Long id) {
         return gpaService.deleteGpa(id);
     }
 }
