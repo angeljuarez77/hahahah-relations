@@ -13,21 +13,22 @@ public class GpaServiceImpl implements GpaService {
 
     @Override
     public Iterable<Gpa> getGpas() {
-        return null;
+        return gpaRepository.findAll();
     }
 
     @Override
     public Gpa createGpa(Gpa gpa) {
-        return null;
+        return gpaRepository.save(gpa);
     }
 
     @Override
     public Gpa updateGpa(Gpa gpa) {
-        return null;
+        return gpaRepository.save(gpa);
     }
 
     @Override
     public HttpStatus deleteGpa(Long id) {
-        return null;
+        gpaRepository.deleteById(id);
+        return HttpStatus.OK;
     }
 }
