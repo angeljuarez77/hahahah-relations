@@ -27,4 +27,8 @@ public class GpaController {
         return gpaService.updateGpa(gpa);
     }
 
+    @DeleteMapping("/{id}")
+    public HttpStatus deleteGpa(@RequestParam Long id) {
+        return gpaService.deleteGpa(id);
+    }
 }
