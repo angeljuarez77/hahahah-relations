@@ -13,7 +13,7 @@ public class Gpa {
     @Column
     private Double gpa;
 
-    @OneToOne(mappedBy = "gpa", cascade = {
+    @OneToOne(mappedBy = "gradePointAverage", cascade = {
             CascadeType.ALL
     })
     private Student student;

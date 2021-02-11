@@ -28,7 +28,7 @@ public class Student {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "students_gpa_id")
-    private Gpa gpa;
+    private Gpa gradePointAverage;
     // 1.4
     // 1.5
     // 1.6
@@ -104,11 +104,11 @@ public class Student {
         this.schoolName = schoolName;
     }
 
-    public Gpa getGpa() {
-        return gpa;
+    public Gpa getGradePointAverage() {
+        return gradePointAverage;
     }
 
-    public void setGpa(Gpa gpa) {
-        this.gpa = gpa;
+    public void setGradePointAverage(Gpa gradePointAverage) {
+        this.gradePointAverage = gradePointAverage;
     }
 }

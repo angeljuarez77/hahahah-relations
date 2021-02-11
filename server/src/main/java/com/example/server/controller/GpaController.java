@@ -17,9 +17,9 @@ public class GpaController {
         return gpaService.getGpas();
     }
 
-    @PostMapping
-    public Gpa createGpa(@RequestBody Gpa gpa) {
-        return gpaService.createGpa(gpa);
+    @PostMapping("/{studentId}") // http://localhost:8080/gpas/123456
+    public Gpa createGpa(@PathVariable Long studentId, @RequestBody Gpa gpa) {
+        return gpaService.createGpa(studentId, gpa);
     }
 
     @PatchMapping

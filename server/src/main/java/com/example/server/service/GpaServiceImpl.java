@@ -1,6 +1,7 @@
 package com.example.server.service;
 
 import com.example.server.model.Gpa;
+import com.example.server.model.Student;
 import com.example.server.repository.GpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GpaServiceImpl implements GpaService {
+
+    @Autowired
+    StudentService studentService;
 
     @Autowired
     GpaRepository gpaRepository;
@@ -18,8 +22,10 @@ public class GpaServiceImpl implements GpaService {
     }
 
     @Override
-    public Gpa createGpa(Gpa gpa) {
-        return gpaRepository.save(gpa);
+    public Gpa createGpa(Long studentId, Gpa gpa) {
+        Student student = studentService.getStudentById(studentId);
+        student.setGradePointAverage(gpa);
+        return studentService.updateStudent(student).getGradePointAverage();
     }
 
     @Override
