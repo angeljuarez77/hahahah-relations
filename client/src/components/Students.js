@@ -38,12 +38,35 @@ function Students() {
     }
   }
 
+  const [selectedStudent, setSelectedStudent] = useState(null);
+
+  function selectStudent(student) {
+    setSelectedStudent(student)
+  }
+
+  function handleEditChange(e) {
+    const { name, value } = e.target;
+    setSelectedStudent({ ...selectedStudent, [name]: value });
+  }
+
+  async function handleEditSubmit(e) {
+    e.preventDefault();
+    try {
+      const res = await axios.patch('http://localhost:8080/students', selectedStudent);
+      console.log(res.data);
+      getStudents();
+    } catch(e) {
+      console.error(e, e.message);
+    }
+  }
+
   return(
     <div>
       { students && students.map(student => (
         <div className="student" key={ student.id }>
           <h3>The students full name is { student.firstName } { student.lastName }</h3>
           <h6>They are currently in grade { student.grade }</h6>
+          <button onClick={ () => selectStudent(student) }>Edit student</button>
         </div>
       ))}
 
@@ -74,6 +97,32 @@ function Students() {
           </label>
           <input type="submit" value="Enroll student" />
         </form>
+
+        { selectedStudent && <form
+          onChange={ (e) => handleEditChange(e) }
+          onSubmit={ (e) => handleEditSubmit(e) }>
+          <label>
+            First Name:
+            <input type="text" name="firstName" defaultValue={ selectedStudent.firstName } />
+          </label>
+          <label>
+            Last Name:
+            <input type="text" name="lastName" defaultValue={ selectedStudent.lastName } />
+          </label>
+          <label>
+            Age:
+            <input type="text" name="age" defaultValue={ selectedStudent.age } />
+          </label>
+          <label>
+            Grade Level:
+            <input type="text" name="grade" defaultValue={ selectedStudent.grade } />
+          </label>
+          <label>
+            School Name:
+            <input type="text" name="schoolName" defaultValue={ selectedStudent.schoolName } />
+          </label>
+          <input type="submit" value="Edit student information" />
+        </form> }
       </div>
     </div>
   )
