@@ -36,4 +36,12 @@ public class Gpa {
     public void setGpa(Double gpa) {
         this.gpa = gpa;
     }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }
