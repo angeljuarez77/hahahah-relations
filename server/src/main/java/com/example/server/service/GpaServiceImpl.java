@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class GpaServiceImpl implements GpaService {
 
     @Autowired
-    StudentRepository studentRepository;
+    StudentService studentService;
 
     @Autowired
     GpaRepository gpaRepository;
@@ -24,8 +24,9 @@ public class GpaServiceImpl implements GpaService {
 
     @Override
     public Gpa createGpa(Long id, Gpa gpa) {
-        Student student = studentRepository.findById(id).get();
-        return gpaRepository.save(gpa).setStudent(student);
+        Student student = studentService.getStudentById(id);
+        student.setGpa(gpa);
+        return studentService.updateStudent(student).getGpa();
     }
 
     @Override
