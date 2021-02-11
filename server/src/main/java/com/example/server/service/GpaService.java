@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 
 public interface GpaService {
     Iterable<Gpa> getGpas();
-    Gpa createGpa(Gpa gpa);
+    Gpa createGpa(Long id, Gpa gpa);
     Gpa updateGpa(Gpa gpa);
     HttpStatus deleteGpa(Long id);
 }
