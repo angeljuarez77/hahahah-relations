@@ -20,7 +20,8 @@ function Students() {
   const [form, setForm] = useState(null);
 
   function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
   }
 
   function handleSubmit(e) {
@@ -31,7 +32,7 @@ function Students() {
   async function createStudent() {
     try {
       const res = await axios.post('http://localhost:8080/students', form);
-      console.log(res.data);
+      setStudents([...students, res.data]);
     } catch(e) {
       console.error(e, e.message);
     }
