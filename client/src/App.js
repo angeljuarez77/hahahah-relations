@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Students from './components/Students';
+import './App.scss';
 
 function App() {
   return (

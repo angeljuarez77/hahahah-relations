@@ -62,13 +62,7 @@ function Students() {
 
   return(
     <div>
-      { students && students.map(student => (
-        <div className="student" key={ student.id }>
-          <h3>The students full name is { student.firstName } { student.lastName }</h3>
-          <h6>They are currently in grade { student.grade }</h6>
-          <button onClick={ () => selectStudent(student) }>Edit student</button>
-        </div>
-      ))}
+      { students && students.map(student => <Student student={ student } selectStudent={ selectStudent } />)}
 
       <div>
         <h2>Enroll a new student!</h2>
@@ -124,6 +118,16 @@ function Students() {
           <input type="submit" value="Edit student information" />
         </form> }
       </div>
+    </div>
+  )
+}
+
+function Student({ student, selectStudent }) {
+  return (
+    <div className="student" key={ student.id }>
+      <h3>The students full name is { student.firstName } { student.lastName }</h3>
+      <h6>They are currently in grade { student.grade }</h6>
+      <button onClick={ () => selectStudent(student) }>Edit student</button>
     </div>
   )
 }
