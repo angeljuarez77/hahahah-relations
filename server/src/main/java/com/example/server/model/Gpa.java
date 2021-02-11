@@ -1,5 +1,7 @@
 package com.example.server.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,7 @@ public class Gpa {
     @Column
     private Double gpa;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "gpa", cascade = {
             CascadeType.ALL
     })
