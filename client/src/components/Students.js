@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './Student.scss'
 
 function Students() {
   const [students, setStudents] = useState(null);
@@ -60,13 +61,24 @@ function Students() {
     }
   }
 
+  async function deleteStudent(studentId) {
+    try {
+      const res = await axios.delete('http://localhost:8080/students/' + studentId);
+      console.log(res.data);
+      getStudents();
+    } catch(e) {
+      console.error(e, e.message);
+    }
+  }
+
   return(
     <div>
-      { students && students.map(student => <Student student={ student } selectStudent={ selectStudent } />)}
+      { students && students.map(student => <Student student={ student } selectStudent={ selectStudent } deleteStudent={ deleteStudent } />)}
 
       <div>
         <h2>Enroll a new student!</h2>
         <form
+          className="enroll-student-form"
           onChange={ (e) => handleChange(e) }
           onSubmit={ (e) => handleSubmit(e) }>
           <label>
@@ -89,7 +101,7 @@ function Students() {
             School Name:
             <input type="text" name="schoolName" />
           </label>
-          <input type="submit" value="Enroll student" />
+          <input type="submit" value="Enroll student" className="button success" />
         </form>
 
         { selectedStudent && <form
@@ -122,12 +134,13 @@ function Students() {
   )
 }
 
-function Student({ student, selectStudent }) {
+function Student({ student, selectStudent, deleteStudent }) {
   return (
     <div className="student" key={ student.id }>
-      <h3>The students full name is { student.firstName } { student.lastName }</h3>
-      <h6>They are currently in grade { student.grade }</h6>
-      <button onClick={ () => selectStudent(student) }>Edit student</button>
+      <h3 className="full-name-description">The students full name is <span className="first-name">{ student.firstName }</span> <span className="last-name">{ student.lastName }</span></h3>
+      <h6>They are currently in grade <span className="grade-level">{ student.grade }</span></h6>
+      <button className="select-student-button" onClick={ () => selectStudent(student) }>Edit student</button>
+      <button onClick={ () => deleteStudent(student.id) }>Delete Student</button>
     </div>
   )
 }

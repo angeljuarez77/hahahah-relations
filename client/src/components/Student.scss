@@ -1,0 +1,45 @@
+// @mixin transform($property) {
+//   -webkit-transform: $property;
+//   -ms-transform: $property;
+//   transform: $property;
+// }
+// .box { @include transform(rotate(30deg)); }
+
+$purpleish: rgba($color: #928fe3, $alpha: .8);
+$magentaish: rgba($color: #b64ee3, $alpha: .8);
+body { 
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  border: none;
+  font-style: italic;
+  width: 20%;
+}
+
+.enroll-student-form {
+  border: solid black 1px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+  background: linear-gradient(45deg, $purpleish, $magentaish);
+  /*
+  input {
+    border: rgba($color: #928fe3, $alpha: .8);
+  }
+  */
+}
+
+.student {
+  border: solid red 1px;
+  margin: 2rem;
+  font-size: 3rem;
+  .full-name-description {
+    font-weight: bold;
+    .first-name, .last-name {
+      color: red;
+    }
+  }
+}
